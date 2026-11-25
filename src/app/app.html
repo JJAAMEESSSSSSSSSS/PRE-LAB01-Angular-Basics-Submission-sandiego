@@ -1,33 +1,16 @@
-<main class="resume">
-  <header class="intro">
-    <h1>{{ fullName }}</h1>
-    <p>
-      {{ location }} |
-      {{ phone }} |
-      {{ GitHub }} |
-      <a [href]="'mailto:' + email">{{ email }}</a>
-    </p>
-  </header>
+<nav class="topnav">
+  <a class="brand" routerLink="/">My CV</a>
+  <ul>
+    <li>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    </li>
+    <li>
+      <a routerLink="/data-binding" routerLinkActive="active">Data Binding</a>
+    </li>
+    <li>
+      <a routerLink="/directives" routerLinkActive="active">Directives</a>
+    </li>
+  </ul>
+</nav>
 
-  <section>
-    <h2>Personal Profile</h2>
-    <p>{{ profile }}</p>
-  </section>
-
-  <app-profile-card></app-profile-card>
-
-  <section>
-    <h2>Key Skills</h2>
-    <ul>
-      @for (skill of skills; track skill) {
-        <li>{{ skill }}</li>
-      }
-    </ul>
-  </section>
-
-  <section class="interaction">
-    <h2>Angular Interaction</h2>
-    <p>{{ message }}</p>
-    <button (click)="showMessage()">Click Me</button>
-  </section>
-</main>
+<router-outlet />

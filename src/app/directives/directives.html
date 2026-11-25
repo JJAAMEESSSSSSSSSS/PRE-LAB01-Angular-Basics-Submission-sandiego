@@ -1,0 +1,68 @@
+<main class="resume">
+  <h1>Directives and Control Flow</h1>
+  <p class="lead">Angular's built-in control flow blocks decide <em>what</em> appears on the page and <em>how many times</em>.</p>
+
+  <section class="demo">
+    <h2 class="section-title">1. Show or hide with <code>&#64;if</code></h2>
+    <button type="button" (click)="toggleProjects()">
+      {{ showProjects ? 'Hide' : 'Show' }} my projects
+    </button>
+
+    @if (showProjects) {
+      <p class="ok">Projects are visible. Scroll down to the &#64;for example.</p>
+    } @else {
+      <p class="muted">Projects are hidden. Click the button to show them.</p>
+    }
+  </section>
+
+  @if (showProjects) {
+    <section class="demo">
+      <h2 class="section-title">2. Repeat with <code>&#64;for</code></h2>
+      <ol>
+        @for (project of projects; track project.name; let i = $index) {
+          <li>
+            <strong>{{ project.name }}</strong> &mdash; {{ project.tech }}
+            @if (i === 0) {
+              <span class="tag">Latest</span>
+            }
+          </li>
+        } @empty {
+          <li>No projects yet.</li>
+        }
+      </ol>
+      <p class="hint">{{ projects.length }} projects listed. <code>$index</code> starts at 0.</p>
+    </section>
+  }
+
+  <section class="demo">
+    <h2 class="section-title">3. Choose a case with <code>&#64;switch</code></h2>
+    <label for="level">Show tools at level:</label>
+    <select id="level" [(ngModel)]="selectedLevel">
+      <option>All</option>
+      <option>Beginner</option>
+      <option>Intermediate</option>
+      <option>Advanced</option>
+    </select>
+
+    <ul class="levels">
+      @for (item of filteredProficiencies(); track item.tool) {
+        <li>
+          <strong>{{ item.tool }}</strong>:
+          @switch (item.level) {
+            @case ('Beginner') {
+              <span class="level beginner">Beginner &middot; still learning</span>
+            }
+            @case ('Intermediate') {
+              <span class="level intermediate">Intermediate &middot; comfortable using it</span>
+            }
+            @case ('Advanced') {
+              <span class="level advanced">Advanced &middot; can teach others</span>
+            }
+          }
+        </li>
+      } @empty {
+        <li class="muted">No tools at the {{ selectedLevel }} level.</li>
+      }
+    </ul>
+  </section>
+</main>

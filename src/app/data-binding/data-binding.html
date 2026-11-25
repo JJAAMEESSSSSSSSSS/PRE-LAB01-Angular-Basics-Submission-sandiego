@@ -1,0 +1,44 @@
+<main class="resume">
+  <h1>{{ pageTitle }}</h1>
+  <p class="lead">Each box shows one way Angular connects the class (TypeScript) to the template (HTML).</p>
+
+  <section class="demo">
+    <h2 class="section-title">1. Interpolation &nbsp;<code ngNonBindable>{{ }}</code></h2>
+    <p>This page is called <strong>{{ pageTitle }}</strong>.</p>
+    <p>I am learning {{ skills.length }} skills. The first one is {{ skills[0] }}.</p>
+    <p>Expressions work too: 2 + 3 = {{ 2 + 3 }}.</p>
+  </section>
+
+  <section class="demo">
+    <h2 class="section-title">2. Property binding &nbsp;<code>[property]</code></h2>
+    <p>Skill: <strong>{{ skillName }}</strong> &mdash; {{ skillLevel }}%</p>
+    <progress [value]="skillLevel" max="100"></progress>
+    <p class="hint">
+      The bar's <code>value</code> and each button's <code>disabled</code> property are bound to <code>skillLevel</code>.
+    </p>
+  </section>
+
+  <section class="demo">
+    <h2 class="section-title">3. Event binding &nbsp;<code>(event)</code></h2>
+    <div class="buttons">
+      <button type="button" (click)="decrease()" [disabled]="skillLevel === 0">&minus; 10%</button>
+      <button type="button" (click)="increase()" [disabled]="skillLevel === 100">+ 10%</button>
+    </div>
+    <p class="hint">Clicking a button calls a method in the class, which changes <code>skillLevel</code>.</p>
+  </section>
+
+  <section class="demo">
+    <h2 class="section-title">4. Two-way binding &nbsp;<code>[(ngModel)]</code></h2>
+    <label for="visitorName">Your name</label>
+    <input id="visitorName" type="text" [(ngModel)]="visitorName" placeholder="Type your name" />
+
+    <label for="visitorMessage">Message</label>
+    <textarea id="visitorMessage" rows="3" [(ngModel)]="visitorMessage" placeholder="Leave a short message"></textarea>
+
+    <div class="preview">
+      <p class="preview-label">Live preview</p>
+      <p><strong>{{ visitorName || 'Your name' }}</strong> says:</p>
+      <p>{{ visitorMessage || 'Your message will appear here.' }}</p>
+    </div>
+  </section>
+</main>
